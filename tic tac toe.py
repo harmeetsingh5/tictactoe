@@ -18,12 +18,11 @@ def makeBoard():
 
     
 #update x and o's
-def update(index1, index2):
-    board[index1,index2] = 1
-    
-    
+
 #make game board filled with 0's
 board = [[0,0,0],[0,0,0],[0,0,0]]
+
+label = Label(text="press")
 
 ttt = Tk()
 ttt.title("tic tac toe")
@@ -38,6 +37,3 @@ b1.pack()
 b1.place(height=50,width=100, x=35, y=50)
 canvas.pack(fill=BOTH)
 ttt.mainloop()
-
-    
-
