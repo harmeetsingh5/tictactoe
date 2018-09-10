@@ -129,7 +129,7 @@ def nextTurn():
     else:
         hud.set("X's turn")
     if(turn >= 9):
-        hud.set("game over")
+        hud.set("tie game!")
 
 #make game board filled with 0's
 board = [[0,0,0],[0,0,0],[0,0,0]]
