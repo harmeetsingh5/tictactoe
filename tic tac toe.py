@@ -29,6 +29,7 @@ def callback1():
         b1.config(text="o")
     b1.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback2():
     global turn
@@ -119,8 +120,12 @@ def callback9():
     nextTurn()
     
 def winCheck():
-    if(board[0][0]==0 and board[0][1]==0 and board[0][2]==0):
-        X=Label(ttt,text="x wins")
+    if(board[0][0] == board[0][1] and board[0][1] == board[0][2]):
+        if(turn%2 == 0):
+            hud.set("X wins")
+        else:
+            hud.set('O wins')
+        disableButtons()
         
 def nextTurn():
     global turn
@@ -131,6 +136,17 @@ def nextTurn():
     if(turn >= 9):
         hud.set("tie game!")
 
+def disableButtons():
+    b1.config(state = DISABLED)
+    b2.config(state = DISABLED)
+    b3.config(state = DISABLED)
+    b4.config(state = DISABLED)
+    b5.config(state = DISABLED)
+    b6.config(state = DISABLED)
+    b7.config(state = DISABLED)
+    b8.config(state = DISABLED)
+    b9.config(state = DISABLED)
+    
 #make game board filled with 0's
 board = [[0,0,0],[0,0,0],[0,0,0]]
 
