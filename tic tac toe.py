@@ -7,6 +7,8 @@ Created on Sat Sep  1 23:57:20 2018
 from tkinter import *
 import tkinter.messagebox
 import numpy as np
+import sys 
+import os
 
 #keeps track of who's turn it is
 turn=0
@@ -141,7 +143,8 @@ def callback9():
     winCheck()
     
 def retry():
-    
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
     
 def winCheck():
     global win
@@ -217,7 +220,9 @@ def winCheck():
         disableButtons()
         win=True
     
-    if(win == True):
+    if(win == True or turn == 9):
+        if(turn == 9 and win == False):
+            hud.set("tie game!")
         b10 = tkinter.Button(ttt, text="retry me daddy", command = retry,fg="black" )
         b10.pack()
         b10.place(height=50,width=100, x=200, y=200)
@@ -228,8 +233,6 @@ def nextTurn():
         hud.set("O's turn")
     else:
         hud.set("X's turn")
-    if(turn >= 9):
-        hud.set("tie game!")
 
 def disableButtons():
     b1.config(state = DISABLED)
