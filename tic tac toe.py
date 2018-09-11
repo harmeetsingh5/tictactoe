@@ -8,7 +8,11 @@ from tkinter import *
 import tkinter.messagebox
 import numpy as np
 
+#keeps track of who's turn it is
 turn=0
+
+#bool for retry button to appear
+win=False
 
 #makes board lines
 def makeBoard():
@@ -27,6 +31,7 @@ def callback1():
         board[0][0]=0
     else:
         b1.config(text="o")
+        board[0][0]=1
     b1.config(state=DISABLED)
     nextTurn()
     winCheck()
@@ -39,8 +44,10 @@ def callback2():
         board[0][1]=0
     else:
         b2.config(text="o")
+        board[0][1]=1
     b2.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback3():
     global turn
@@ -50,8 +57,10 @@ def callback3():
         board[0][2]=0
     else:
         b3.config(text="o")
+        board[0][2]=1
     b3.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback4():
     global turn
@@ -61,8 +70,10 @@ def callback4():
         board[1][0]=0
     else:
         b4.config(text="o")
+        board[1][0]=1
     b4.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback5():
     global turn
@@ -72,8 +83,10 @@ def callback5():
         board[1][1]=0
     else:
         b5.config(text="o")
+        board[1][1]=1
     b5.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback6():
     global turn
@@ -83,8 +96,10 @@ def callback6():
         board[1][2]=0
     else:
         b6.config(text="o")
+        board[1][2]=1
     b6.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback7():
     global turn
@@ -94,8 +109,10 @@ def callback7():
         board[2][0]=0
     else:
         b7.config(text="o")
+        board[2][0]=1
     b7.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback8():
     global turn
@@ -105,8 +122,10 @@ def callback8():
         board[2][1]=0
     else:
         b8.config(text="o")
+        board[2][1]=1
     b8.config(state=DISABLED)
     nextTurn()
+    winCheck()
     
 def callback9():
     global turn
@@ -116,17 +135,93 @@ def callback9():
         board[2][2]=0
     else:
         b9.config(text="o")
+        board[2][2]=1
     b9.config(state=DISABLED)
     nextTurn()
+    winCheck()
+    
+def retry():
+    
     
 def winCheck():
-    if(board[0][0] == board[0][1] and board[0][1] == board[0][2]):
-        if(turn%2 == 0):
-            hud.set("X wins")
-        else:
-            hud.set('O wins')
+    global win
+    if(board[0][0] == 0 and board[0][1] == 0 and board[0][2] == 0):
+        hud.set("X wins")
         disableButtons()
+        win=True
+    elif(board[0][0] == 1 and board[0][1] == 1 and board[0][2] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
         
+    if(board[1][0] == 0 and board[1][1] == 0 and board[1][2] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[1][0] == 1 and board[1][1] == 1 and board[1][2] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[2][0] == 0 and board[2][1] == 0 and board[2][2] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[2][0] == 1 and board[2][1] == 1 and board[2][2] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[0][0] == 0 and board[1][0] == 0 and board[2][0] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[0][0] == 1 and board[1][0] == 1 and board[2][0] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[0][1] == 0 and board[1][1] == 0 and board[2][1] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[0][1] == 1 and board[1][1] == 1 and board[2][1] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[0][2] == 0 and board[1][2] == 0 and board[2][2] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[0][2] == 1 and board[1][2] == 1 and board[2][2] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[0][2] == 0 and board[1][1] == 0 and board[2][0] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[0][2] == 1 and board[1][1] == 1 and board[2][0] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+        
+    if(board[0][0] == 0 and board[1][1] == 0 and board[2][2] == 0):
+        hud.set("X wins")
+        disableButtons()
+        win=True
+    elif(board[0][0] == 1 and board[1][1] == 1 and board[2][2] == 1):
+        hud.set('O wins')
+        disableButtons()
+        win=True
+    
+    if(win == True):
+        b10 = tkinter.Button(ttt, text="retry me daddy", command = retry,fg="black" )
+        b10.pack()
+        b10.place(height=50,width=100, x=200, y=200)
+
 def nextTurn():
     global turn
     if(turn%2 == 0):
@@ -147,8 +242,8 @@ def disableButtons():
     b8.config(state = DISABLED)
     b9.config(state = DISABLED)
     
-#make game board filled with 0's
-board = [[0,0,0],[0,0,0],[0,0,0]]
+#make game board filled with non 0 and 1's
+board = [[2,2,2],[2,2,2],[2,2,2]]
 
 ttt = Tk()
 ttt.title("tic tac toe")
