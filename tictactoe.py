@@ -24,7 +24,7 @@ def makeBoard():
     canvas.create_line(0,334,500,334, fill = 'red')
     
 
-#update x and o's
+#update x and o's for each individual button
 def callback1():
     global turn
     turn +=1
@@ -141,11 +141,13 @@ def callback9():
     b9.config(state=DISABLED)
     nextTurn()
     winCheck()
-    
+  
+#starts game over if clicked 
 def retry():
     python = sys.executable
     os.execl(python, python, * sys.argv)
     
+#logic for checking who wins
 def winCheck():
     global win
     if(board[0][0] == 0 and board[0][1] == 0 and board[0][2] == 0):
@@ -223,10 +225,11 @@ def winCheck():
     if(win == True or turn == 9):
         if(turn == 9 and win == False):
             hud.set("tie game!")
-        b10 = tkinter.Button(ttt, text="retry me daddy", command = retry,fg="black" )
+        b10 = tkinter.Button(ttt, text="retry", command = retry,fg="black" )
         b10.pack()
         b10.place(height=50,width=100, x=200, y=200)
 
+#turn updater
 def nextTurn():
     global turn
     if(turn%2 == 0):
@@ -234,6 +237,7 @@ def nextTurn():
     else:
         hud.set("X's turn")
 
+#disables all buttons, called if game is won
 def disableButtons():
     b1.config(state = DISABLED)
     b2.config(state = DISABLED)
@@ -248,6 +252,7 @@ def disableButtons():
 #make game board filled with non 0 and 1's
 board = [[2,2,2],[2,2,2],[2,2,2]]
 
+#creating board
 ttt = Tk()
 ttt.title("tic tac toe")
 ttt.geometry('500x500')
@@ -262,48 +267,48 @@ disp.pack()
 disp.place(height=20,width=100, x=50, y=450)
 hud.set("O's turn")
     
-
-b1 = tkinter.Button(ttt, text="click me daddy", command = callback1,fg="black" )
+#intializing buttons on the board
+b1 = tkinter.Button(ttt, text="click", command = callback1,fg="black" )
 
 b1.pack()
 b1.place(height=50,width=100, x=35, y=50)
 
-b2 = tkinter.Button(ttt, text="click me daddy", command = callback2,fg="black")
+b2 = tkinter.Button(ttt, text="click", command = callback2,fg="black")
 
 b2.pack()
 b2.place(height=50,width=100, x=200, y=50)
 
-b3 = tkinter.Button(ttt, text="click me daddy", command = callback3,fg="black")
+b3 = tkinter.Button(ttt, text="click", command = callback3,fg="black")
 
 b3.pack()
 b3.place(height=50,width=100, x=365, y=50)
 
-b4 = tkinter.Button(ttt, text="click me daddy", command = callback4,fg="black")
+b4 = tkinter.Button(ttt, text="click", command = callback4,fg="black")
 
 b4.pack()
 b4.place(height=50,width=100, x=35, y=225)
 
-b5 = tkinter.Button(ttt, text="click me daddy",command = callback5,fg="black")
+b5 = tkinter.Button(ttt, text="click",command = callback5,fg="black")
 
 b5.pack()
 b5.place(height=50,width=100, x=200, y=225)
 
-b6 = tkinter.Button(ttt, text="click me daddy",command = callback6,fg="black")
+b6 = tkinter.Button(ttt, text="click",command = callback6,fg="black")
 
 b6.pack()
 b6.place(height=50,width=100, x=365, y=225)
 
-b7 = tkinter.Button(ttt, text="click me daddy",command = callback7,fg="black")
+b7 = tkinter.Button(ttt, text="click",command = callback7,fg="black")
 
 b7.pack()
 b7.place(height=50,width=100, x=35, y=375)
 
-b8 = tkinter.Button(ttt, text="click me daddy",command = callback8,fg="black")
+b8 = tkinter.Button(ttt, text="click",command = callback8,fg="black")
 
 b8.pack()
 b8.place(height=50,width=100, x=200, y=375)
 
-b9 = tkinter.Button(ttt, text="click me daddy",command = callback9,fg="black")
+b9 = tkinter.Button(ttt, text="click",command = callback9,fg="black")
 
 b9.pack()
 b9.place(height=50,width=100, x=365, y=375)
